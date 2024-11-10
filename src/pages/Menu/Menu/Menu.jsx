@@ -44,27 +44,27 @@ const Menu = () => {
       {/* ========Dessert Items======= */}
       <MenuCategory
         items={dessert}
-        title="Desserts"
+        title="desserts"
         coverImage={desertImage}
         subTitle="lLorem Ipsum is simply dummy text research work"
       ></MenuCategory>
 
       <MenuCategory
         items={pizza}
-        title="PIZZA"
+        title="pizza"
         subTitle="lLorem Ipsum is simply dummy text research work"
         coverImage={pizzaImage}
       ></MenuCategory>
 
       <MenuCategory
         items={salad}
-        title="SALAD"
+        title="salad"
         subTitle="lLorem Ipsum is simply dummy text research work.dummy text research work"
         coverImage={saladImage}
       ></MenuCategory>
       <MenuCategory
         items={soup}
-        title="SOUP"
+        title="soup"
         subTitle="lLorem Ipsum is simply dummy text research work.dummy text research work"
         coverImage={soupImage}
       ></MenuCategory>

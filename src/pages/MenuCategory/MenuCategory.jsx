@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import Cover from "../Shared/Cover/Cover";
 import MenuItem from "../Shared/MenuItems/MenuItem";
 
 const MenuCategory = ({ items, coverImage, title, subTitle }) => {
   return (
-    <div>
+    <div className="">
       {title && (
         <Cover image={coverImage} title={title} subTitle={subTitle}></Cover>
       )}
@@ -12,6 +13,13 @@ const MenuCategory = ({ items, coverImage, title, subTitle }) => {
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
+
+      <Link
+        to={`/order/${title}`}
+        className="btn btn-outline text-black my-1 border-0 border-b-4 shadow-md "
+      >
+        Order Your Favourite Food
+      </Link>
     </div>
   );
 };
