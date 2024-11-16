@@ -1,8 +1,8 @@
 const FoodCard = ({ image, name, title, price }) => {
   return (
-    <div className="card card-compact bg-base-100 w-96 shadow-xl">
+    <div className="card card-compact bg-base-100 w-full shadow-xl">
       <figure>
-        <img src={image} alt="Shoes" />
+        <img src={image} alt="Shoes" className="w-full" />
       </figure>
       <p className="absolute right-0 mr-4 bg-slate-800 shadow-md text-white px-2 py-1 m-2 rounded-md">
         ${price}
