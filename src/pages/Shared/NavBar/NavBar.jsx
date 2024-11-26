@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  // console.log("-----", user, user.photoURL);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navOptions = (
     <>
       <li>
@@ -13,8 +24,30 @@ const NavBar = () => {
       <li>
         <Link to="/order">Order</Link>
       </li>
+
+      {user ? (
+        <>
+          <li>
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/secret">Secret</Link>
+      </li>
+      <li>
+        <Link>
+          <button className="btn btn-sm">
+            Inbox
+            <div className="badge badge-secondary">+99</div>
+          </button>
+        </Link>
       </li>
     </>
   );
@@ -53,7 +86,11 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <div className="avatar">
+            <div className="ring-primary ring-offset-base-100 w-14 rounded-full ring ring-offset-2">
+              <img className="w-14 h-auto" src={user?.photoURL} />
+            </div>
+          </div>
         </div>
       </div>
     </>

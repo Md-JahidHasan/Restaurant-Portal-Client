@@ -15,7 +15,7 @@ const PopularItems = () => {
 
   const items = useMenu();
   const popularItems = items[0].filter((item) => item.category === "popular");
-  console.log(items[0]);
+  // console.log(items[0]);
 
   return (
     <section className="mb-12">

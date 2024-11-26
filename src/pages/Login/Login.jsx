@@ -5,13 +5,18 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
 
   const { signIn } = useContext(AuthContext);
+
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -21,6 +26,12 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      Swal.fire({
+        title: "Succeed",
+        text: "User Login Successful!",
+        icon: "",
+      });
+      navigate(from, { replace: true });
     });
     console.log(email, password);
   };
@@ -29,12 +40,14 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
-  const handleValidateCaptcha = () => {
-    const userCaptchaValue = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const userCaptchaValue = e.target.value;
+    console.log(userCaptchaValue);
+
     if (validateCaptcha(userCaptchaValue) === true) {
       setDisabled(false);
     } else {
-      alert("Please enter correct Captcha");
+      // alert("Please enter correct Captcha");
       setDisabled(true);
     }
   };
@@ -89,18 +102,12 @@ const Login = () => {
               </label>
               <input
                 type="text"
-                ref={captchaRef}
+                onBlur={handleValidateCaptcha}
                 name="captcha"
                 placeholder="Type the text above"
                 className="input input-bordered"
                 required
               />
-              <button
-                onClick={handleValidateCaptcha}
-                className="btn btn-outline btn-accent btn-xs"
-              >
-                Validate
-              </button>
             </div>
             <div className="form-control mt-6">
               <input
@@ -113,7 +120,11 @@ const Login = () => {
           </form>
           <p className="text-center mb-4">
             <small>
-              New here? <Link to="/signin"> Create an account</Link>
+              New here?{" "}
+              <Link to="/signup" className="text-blue-700">
+                {" "}
+                Create an account
+              </Link>
             </small>
           </p>
         </div>
