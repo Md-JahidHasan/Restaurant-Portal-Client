@@ -13,6 +13,7 @@ const OrderTab = ({ items }) => {
           name={d.name}
           title={d.recipe}
           price={d.price}
+          item={d}
         ></FoodCard>
       ))}
     </div>
