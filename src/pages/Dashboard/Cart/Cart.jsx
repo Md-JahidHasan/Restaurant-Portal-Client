@@ -66,7 +66,7 @@ const Cart = () => {
                         <td>${item.price}</td>
                         <th>
                           <button className="btn btn-ghost btn-xs text-red-700 text-xl">
-                            <FaTrash></FaTrash>
+                            <FaTrash ></FaTrash>
                           </button>
                         </th>
                       </tr>
