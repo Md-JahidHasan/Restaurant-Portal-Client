@@ -4,6 +4,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 
+
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
+
+
 const SignUp = () => {
   const navigate = useNavigate();
   const {
@@ -13,28 +19,45 @@ const SignUp = () => {
     reset,
   } = useForm();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic()
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photo)
-        .then(() => {
-          console.log("User profile info updated");
-          reset();
-          navigate("/");
+        updateUserProfile(data.name, data.photo)
+            .then(() => {
+                const userInfo = {
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your work has been saved",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            console.log("User profile info updated");
+                            reset();
+                            navigate("/");
+                        }
+                    })
         })
         .catch((error) => console.log(error));
-    });
-  };
+        });
+    };
 
   return (
     <>
-      <Helmet>
-        <title>Bistro Boss | Sign Up</title>
-      </Helmet>
+        <Helmet>
+            <title>Bistro Boss | Sign Up</title>
+        </Helmet>
       <div>
         <div className="hero bg-base-200 min-h-screen">
           <div className="hero-content m-12 flex-col lg:flex-row-reverse">
