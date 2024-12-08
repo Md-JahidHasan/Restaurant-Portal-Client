@@ -1,4 +1,4 @@
-import { FaAd, FaBars, FaBook, FaCalendar, FaCashRegister, FaEnvelope, FaHome, FaMailBulk, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaBars, FaBook, FaCalendar, FaCashRegister, FaEnvelope, FaHome, FaMailBulk, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaLetterboxd, FaShop } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
@@ -13,55 +13,93 @@ const Dashboard = () => {
 
     return (
       <div className="flex h-full">
-
         {/* ========================
                 Dashboard Side Bar
         =============================*/}
         <div className="w-64 min-h-screen bg-orange-800">
           <ul className="menu text-white">
-            <li className="mb-2">
-              <NavLink to="/dashboard/userHome">
-                <FaHome></FaHome>
-                User Home
-              </NavLink>
-            </li>
+            {isAdmin ? (
+              <>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/adminHome">
+                    <FaHome></FaHome>
+                    Admin Home
+                  </NavLink>
+                </li>
 
-            <li className="mb-2">
-              <NavLink to="/dashboard/reservation">
-                <FaCalendar></FaCalendar>
-                Reservation
-              </NavLink>
-            </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/reservation">
+                    <FaUtensils></FaUtensils>
+                    Add Item
+                  </NavLink>
+                </li>
 
-            <li className="mb-2">
-              <NavLink to="/dashboard/paymentHistory">
-                <FaCashRegister></FaCashRegister>
-                Payment History
-              </NavLink>
-            </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/paymentHistory">
+                    <FaBars></FaBars>
+                    Manage Items
+                  </NavLink>
+                </li>
 
-            <li className="mb-2">
-              <NavLink to="/dashboard/cart">
-                <FaShoppingCart></FaShoppingCart>
-                My cart ({cart.length})
-              </NavLink>
-            </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/cart">
+                    <FaBook></FaBook>
+                    Manage Bookings
+                  </NavLink>
+                </li>
 
-            <li className="mb-2">
-              <NavLink to="/dashboard/review">
-                <FaAd></FaAd>
-                Add Review
-              </NavLink>
-            </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/allUsers">
+                    <FaUsers></FaUsers>
+                    All Users
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/userHome">
+                    <FaHome></FaHome>
+                    User Home
+                  </NavLink>
+                </li>
 
-            <li className="mb-2">
-              <NavLink to="/dashboard/myBoooking">
-                <FaBook></FaBook>
-                My Booking
-              </NavLink>
-            </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/reservation">
+                    <FaCalendar></FaCalendar>
+                    Reservation
+                  </NavLink>
+                </li>
 
+                <li className="mb-2">
+                  <NavLink to="/dashboard/paymentHistory">
+                    <FaCashRegister></FaCashRegister>
+                    Payment History
+                  </NavLink>
+                </li>
 
+                <li className="mb-2">
+                  <NavLink to="/dashboard/cart">
+                    <FaShoppingCart></FaShoppingCart>
+                    My cart ({cart.length})
+                  </NavLink>
+                </li>
+
+                <li className="mb-2">
+                  <NavLink to="/dashboard/review">
+                    <FaAd></FaAd>
+                    Add Review
+                  </NavLink>
+                </li>
+
+                <li className="mb-2">
+                  <NavLink to="/dashboard/myBoooking">
+                    <FaBook></FaBook>
+                    My Booking
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* ===============================
                   Shared Nav Links
@@ -97,7 +135,6 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-
 
         {/* ===================
         Dashboard outlet
