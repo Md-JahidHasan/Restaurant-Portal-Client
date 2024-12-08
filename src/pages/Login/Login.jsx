@@ -7,6 +7,7 @@ import {
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const location = useLocation();
@@ -118,6 +119,7 @@ const Login = () => {
               />
             </div>
           </form>
+          <SocialLogin></SocialLogin>
           <p className="text-center mb-4">
             <small>
               New here?{" "}

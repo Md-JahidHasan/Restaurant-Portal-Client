@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 
@@ -55,9 +56,9 @@ const SignUp = () => {
 
   return (
     <>
-        <Helmet>
-            <title>Bistro Boss | Sign Up</title>
-        </Helmet>
+      <Helmet>
+        <title>Bistro Boss | Sign Up</title>
+      </Helmet>
       <div>
         <div className="hero bg-base-200 min-h-screen">
           <div className="hero-content m-12 flex-col lg:flex-row-reverse">
@@ -136,6 +137,8 @@ const SignUp = () => {
                   />
                 </div>
               </form>
+
+              <SocialLogin></SocialLogin>
               <p className="text-center mb-10">
                 <small>
                   Already have an account? <br />
