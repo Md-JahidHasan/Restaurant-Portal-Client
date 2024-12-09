@@ -53,6 +53,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        // get token and store client
+      }
+      else {
+        // remove token (if token stored in the client side: locasl storage, caching, in memory)
+      }
 
       setLoading(false);
     });
@@ -61,7 +67,7 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = {
+   const authInfo = {
     user,
     loading,
     createUser,
