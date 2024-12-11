@@ -4,6 +4,12 @@ import axios from "axios";
   baseURL: "http://localhost:5001",
 });
 const useAxiosSecure = () => {
+  axiosSecure.interceptors.request.use(function (config) {
+    config.headers.authorization = `Bearer ${localStorage.getItem('access-token')}`
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  })
     return axiosSecure;
 };
 
