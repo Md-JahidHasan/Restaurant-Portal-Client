@@ -1,7 +1,8 @@
 import { FaAd, FaBars, FaBook, FaCalendar, FaCashRegister, FaEnvelope, FaHome, FaMailBulk, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
-import { FaLetterboxd, FaShop } from "react-icons/fa6";
+import {  FaShop } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
 
@@ -9,7 +10,7 @@ const Dashboard = () => {
   
 
   // TODO: get admin value from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin()
 
     return (
       <div className="flex h-full">
@@ -28,7 +29,7 @@ const Dashboard = () => {
                 </li>
 
                 <li className="mb-2">
-                  <NavLink to="/dashboard/reservation">
+                  <NavLink to="/dashboard/addItem">
                     <FaUtensils></FaUtensils>
                     Add Item
                   </NavLink>
