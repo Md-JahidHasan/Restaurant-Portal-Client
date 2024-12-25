@@ -1,11 +1,28 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
+
+const image_HOSTING_KEY = import.meta.env.VITE_image_hostingKey;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_HOSTING_KEY}`;
 const AddItems = () => {
 
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const axiosPublic = useAxiosPublic()
+    const onSubmit = async(data) => {
+        console.log(data);
+
+        // image upload to imageBB and then get an url
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        console.log(res.data);
+        
+    }
 
     return (
       <div>
@@ -33,16 +50,19 @@ const AddItems = () => {
                 <div className="label">
                   <span className="label-text">Category*</span>
                 </div>
-                <select
+                            <select
+                            defaultValue="default"
                   {...register("category")}
                   className="select select-info w-full "
                 >
-                  <option className="" disabled selected>
-                    Select language
+                  <option className="" disabled value="default">
+                    Select Category
                   </option>
-                  <option>English</option>
-                  <option>Japanese</option>
-                  <option>Italian</option>
+                  <option value="salad">Salad</option>
+                  <option value="pizza">Pizza</option>
+                  <option value="dissert">Dissert</option>
+                  <option value="soups">Soups</option>
+                  <option value="drinks">Drinks</option>
                 </select>
               </div>
               <div>
@@ -51,7 +71,7 @@ const AddItems = () => {
                 </div>
 
                 <input
-                  {...register("price")}
+                  {...register("price", { required: true })}
                   type="number"
                   placeholder="Type here"
                   className="input input-bordered w-full"
@@ -70,12 +90,13 @@ const AddItems = () => {
             />
 
             <input
-              {...register("file")}
+              {...register("image")}
               type="file"
               className="file-input file-input-bordered w-full my-2"
             />
 
-            <input className="btn btn-warning w-48" type="submit"></input>
+            {/* <input className="btn btn-warning w-48" type="submit"></input> */}
+            <button className="btn btn-warning w-48">Submit <FaUtensils></FaUtensils></button>
           </form>
         </div>
       </div>
