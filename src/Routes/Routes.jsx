@@ -11,6 +11,8 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 
 export const router = createBrowserRouter([
   {
@@ -70,7 +72,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "addItem",
-        element: <AddItems></AddItems>
+        element: <AddItems></AddItems>,
+      },
+      {
+        path: "manageItems",
+        element: <ManageItems></ManageItems>,
+      },
+      {
+        path: "updateItem/:id",
+        element: <UpdateItem></UpdateItem>,
+        loader:  async({ params }) => await fetch(`http://localhost:5001/menu/${params.id}`)
       },
     ],
   },
