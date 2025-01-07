@@ -3,6 +3,7 @@ import useCart from "../../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
 
@@ -56,10 +57,18 @@ const Cart = () => {
         <div className="bg-white mx-12 my-8 p-4 rounded-lg">
           <div className="flex justify-between ">
             <h2 className="text-3xl text-black">Items: {cart.length}</h2>
-            <h2 className="text-3xl text-black">Total Price: {totalPrice}</h2>
-            <button className="text-xl text-white btn bg-orange-800 btn-sm">
-              Pay
-            </button>
+            <h2 className="text-3xl text-black">Total Price: ${totalPrice}</h2>
+            {cart.length ? (
+              <Link to='/dashboard/payment'>
+                <button className="text-xl text-white btn bg-orange-800 btn-sm">
+                  Pay
+                </button>
+              </Link>
+            ) : (
+                <button disabled={ !cart.length} className="text-xl text-white btn bg-orange-800 btn-sm">
+                Pay
+              </button>
+            )}
           </div>
 
           <div>
@@ -99,8 +108,11 @@ const Cart = () => {
                         <td>{item.name}</td>
                         <td>${item.price}</td>
                         <th>
-                          <button onClick={()=>handleDelete(item._id, item.name)} className="btn btn-ghost btn-xs text-red-700 text-xl">
-                            <FaTrash ></FaTrash>
+                          <button
+                            onClick={() => handleDelete(item._id, item.name)}
+                            className="btn btn-ghost btn-xs text-red-700 text-xl"
+                          >
+                            <FaTrash></FaTrash>
                           </button>
                         </th>
                       </tr>
