@@ -7,8 +7,14 @@ const CheckoutForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+
         if (!stripe || !elements) {
+            return;
+        }
+
+        const card = elements.getElement(CardElement);
+
+        if (card === null) {
             return;
         }
     }
