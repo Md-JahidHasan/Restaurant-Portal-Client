@@ -1,6 +1,7 @@
 import { loadStripe } from "@stripe/stripe-js";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 
 const stripePromise = loadStripe("");
@@ -12,7 +13,9 @@ const Payment = () => {
 
             Payment Page
 
-            <Elements stripe={stripePromise}></Elements>
+            <Elements stripe={stripePromise}>
+                <CheckoutForm></CheckoutForm>
+            </Elements>
         </div>
     );
 };
