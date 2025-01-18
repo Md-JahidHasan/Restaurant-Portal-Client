@@ -4,14 +4,16 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 
-const stripePromise = loadStripe("");
+const stripePromise = loadStripe(
+  "pk_test_51M6CREBmdpOIAhB7eeN7TxCrwg7sUsxBtzlCUr3Q29allk73YQohJSMc0kkKy6kDBRFUAJLrS8wQZwSTWgUxAoeO00ClryFqWd"
+);
 const Payment = () => {
     
     return (
         <div>
             <SectionTitle subHeading='Please Pay To Eat' heading='Payment'></SectionTitle>
 
-            Payment Page
+           
 
             <Elements stripe={stripePromise}>
                 <CheckoutForm></CheckoutForm>
