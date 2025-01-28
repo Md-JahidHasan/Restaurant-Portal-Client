@@ -49,7 +49,19 @@ const CheckoutForm = () => {
     } else {
             console.log('[PaymentMethod]', paymentMethod);
             setError('')
-    }
+        }
+        
+        // confirm payment
+        const {} = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: CardElement,
+            billing_details: {
+              name: "Jenny Rosen",
+            },
+          },
+        });
+
+
     }
     return (
       <form onSubmit={handleSubmit} className="mx-16">
