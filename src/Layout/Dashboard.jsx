@@ -55,6 +55,12 @@ const Dashboard = () => {
                     All Users
                   </NavLink>
                 </li>
+                <li className="mb-2">
+                  <NavLink to="/dashboard/paymentHistory">
+                    <FaCalendar></FaCalendar>
+                    Payment History
+                  </NavLink>
+                </li>
               </>
             ) : (
               <>
@@ -66,9 +72,9 @@ const Dashboard = () => {
                 </li>
 
                 <li className="mb-2">
-                  <NavLink to="/dashboard/reservation">
+                  <NavLink to="/dashboard/paymentHistory">
                     <FaCalendar></FaCalendar>
-                    Reservation
+                    Payment History
                   </NavLink>
                 </li>
 

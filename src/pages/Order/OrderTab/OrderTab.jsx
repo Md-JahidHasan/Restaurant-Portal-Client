@@ -9,6 +9,7 @@ const OrderTab = ({ items }) => {
       {items.map((d) => (
         <FoodCard
           key={d._id}
+          _id= {d._id}
           image={d.image}
           name={d.name}
           title={d.recipe}

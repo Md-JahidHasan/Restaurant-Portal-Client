@@ -40,6 +40,7 @@ const FoodCard = ({ image, name, title, price, item, _id }) => {
           });
           refetch()
           
+          
         
       });
 
